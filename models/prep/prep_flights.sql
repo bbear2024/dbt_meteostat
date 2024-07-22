@@ -21,7 +21,7 @@ flights_cleaned AS(
             ,(air_time * '1 minute'::INTERVAL) AS air_time_interval
             ,actual_elapsed_time
             ,(actual_elapsed_time * '1 minute'::INTERVAL) AS actual_elapsed_time_interval
-            ,(distance * 0.621371)::NUMERIC(6,2) AS distance_km -- see instruction hint
+            ,ROUND((distance * 1.60934), 2) AS distance_km -- see instruction hint
             ,cancelled
             ,diverted
     FROM flights_one_month
