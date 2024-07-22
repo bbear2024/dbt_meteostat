@@ -1,0 +1,15 @@
+version: 2
+sources:
+
+- name: weather
+  schema: s_peihuang
+  tables:
+    - name: weather_daily_raw
+    - name: weather_hourly_raw
+
+- name: flights
+  schema: public
+  tables:
+    - name: flights
+    - name: airports
+    - name: regions
