@@ -47,5 +47,5 @@ SELECT a.name AS airport,
         avg_num_unique_airplanes,
         avg_num_unique_airlines
 FROM t
-JOIN {{ref('prep_flights')}} a
+JOIN {{ref('prep_airports')}} a
 ON t.airport = a.faa
