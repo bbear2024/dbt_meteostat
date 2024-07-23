@@ -17,7 +17,7 @@ arrival AS (
 				count(air_time) AS o_arr,
 				count(DISTINCT tail_number) AS num_unique_airplanes_arr,
 				count(DISTINCT airline) AS num_unique_airline_arr
-		FROM FROM {{ref('prep_flights')}}
+		FROM {{ref('prep_flights')}}
 		GROUP BY dest
 ),
 t AS (
@@ -34,21 +34,18 @@ t AS (
 		JOIN arrival
 		USING (airport)
 ),
-t2 as (
-        SELECT a.name AS airport,
-                t.airport AS code,
-                a.city,
-                a.country,
-                num_dep,
-                num_arr,
-                num_flights_planned,
-                num_cancelled,
-                num_diverted,
-                num_occured,
-                avg_num_unique_airplanes,
-                avg_num_unique_airlines
-        FROM t
-        FROM {{ref('prep_flights')}} a
-        ON t.airport = a.faa
-)
-SELECT * FROM t2
+SELECT a.name AS airport,
+        t.airport AS code,
+        a.city,
+        a.country,
+        num_dep,
+        num_arr,
+        num_flights_planned,
+        num_cancelled,
+        num_diverted,
+        num_occured,
+        avg_num_unique_airplanes,
+        avg_num_unique_airlines
+FROM t
+JOIN {{ref('prep_flights')}} a
+ON t.airport = a.faa
