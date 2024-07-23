@@ -28,8 +28,8 @@ t AS (
 				(c_dep + c_arr) AS num_cancelled,
 				(d_dep + d_arr) AS num_diverted,
 				(o_dep + o_arr) AS num_occured,
-				(num_unique_airplanes_dep + num_unique_airline_arr) AS avg_num_unique_airplanes,
-				(num_unique_airline_dep + num_unique_airline_arr) AS avg_num_unique_airlines
+				round((num_unique_airplanes_dep + num_unique_airline_arr) / 2, 2) AS avg_num_unique_airplanes,
+				round((num_unique_airline_dep + num_unique_airline_arr) / 2, 2) AS avg_num_unique_airlines
 		FROM departures
 		JOIN arrival
 		USING (airport)
