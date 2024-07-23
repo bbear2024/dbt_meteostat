@@ -52,7 +52,7 @@ t2 AS (
 		        avg_num_unique_airplanes,
 		        avg_num_unique_airlines
 		FROM t
-		JOIN prep_airports a
+		JOIN {{ref('prep_airports')}} a
 		ON t.airport = a.faa
 )
 SELECT  flight_date,
