@@ -33,7 +33,7 @@ t AS (
 		FROM departures
 		JOIN arrival
 		USING (airport)
-),
+)
 SELECT a.name AS airport,
         t.airport AS code,
         a.city,
