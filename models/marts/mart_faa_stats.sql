@@ -33,19 +33,22 @@ t AS (
 		FROM departures
 		JOIN arrival
 		USING (airport)
+),
+t2 as (
+        SELECT a.name AS airport,
+                t.airport AS code,
+                a.city,
+                a.country,
+                num_dep,
+                num_arr,
+                num_flights_planned,
+                num_cancelled,
+                num_diverted,
+                num_occured,
+                avg_num_unique_airplanes,
+                avg_num_unique_airlines
+        FROM t
+        FROM {{ref('prep_flights')}} a
+        ON t.airport = a.faa
 )
-SELECT a.name AS airport,
-		t.airport AS code,
-		a.city,
-		a.country,
-		num_dep,
-		num_arr,
-		num_flights_planned,
-		num_cancelled,
-		num_diverted,
-		num_occured,
-		avg_num_unique_airplanes,
-		avg_num_unique_airlines
-FROM t
-JOIN prep_airports a
-ON t.airport = a.faa
+SELECT * FROM t2
